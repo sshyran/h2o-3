@@ -1140,6 +1140,7 @@ public class GLMModel extends Model<GLMModel,GLMModel.GLMParameters,GLMModel.GLM
     public int _selected_alpha_idx;     // alpha index with best deviance
     public int _selected_submodel_idx;  // submodel index with best deviance
     public int _best_submodel_idx;      // submodel index with best deviance
+    public int _best_lambda_idx;        // the same as best_submodel_idx, kept to ensure backward compatibility
     public double lambda_best(){return _submodels.length == 0 ? -1 : _submodels[_best_submodel_idx].lambda_value;}
     public double dispersion(){ return _dispersion;}
     public double alpha_best() { return _submodels.length == 0 ? -1 : _submodels[_selected_submodel_idx].alpha_value;}
@@ -1386,6 +1387,7 @@ public class GLMModel extends Model<GLMModel,GLMModel.GLMParameters,GLMModel.GLM
     // set model coefficients to that of submodel index l
     public void setSubmodelIdx(int l){
       _selected_submodel_idx = l;
+      _best_lambda_idx = l; // kept to ensure backward compatibility
       _selected_alpha_idx = l / _lambda_array_size ;
       _selected_lambda_idx = l % _lambda_array_size;
       if (_random_coefficient_names != null) 
