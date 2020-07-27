@@ -27,3 +27,4 @@ mysqlclient==1.4.6
 recommonmark==0.4.0
 shap==0.28.3
 boto3>=1.7.50
+lightgbm>=2.3.1
